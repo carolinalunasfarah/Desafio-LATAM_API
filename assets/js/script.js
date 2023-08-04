@@ -1,11 +1,11 @@
-const form = document.getElementById("calculate");
-const chart = document.getElementById("myChart");
+const form = document.querySelector("#calculate");
+const chart = document.querySelector("#myChart");
 let myChart;
 
 // Getting coins
-const gettingCoins = async (moneda) => {
+const gettingCoins = async (coin) => {
     try {
-        const values = await fetch("https://mindicador.cl/api/${moneda}");
+        const values = await fetch(`https://mindicador.cl/api/${coin}`);
         const results = await values.json();
         return results.serie;
     } catch (error) {
@@ -22,7 +22,7 @@ const calculateCoinsTotal = (value, datos) => {
 
 // Showing results
 const showResults = (total) => {
-    document.getElementById("total-value").innerHTML = total;
+    document.querySelector("#totalValue").innerHTML = total;
 };
 
 // Mapping data
@@ -31,8 +31,8 @@ const obteinValues = (datos) => {
 };
 
 // Obtein dates
-const obteinDates = () => {
-    return datos.map((item) => new Date(item.date).toLocalDateString("en-US"));
+const obteinDates = (datos) => {
+    return datos.map((item) => new Date(item.date).toLocaleDateString("en-US"));
 };
 
 // Destroy graphic. The idea is to destroy a previous graphic so when we need a new one it doesn't overlap
@@ -43,8 +43,8 @@ const destroyPreviousGraphic = () => {
 };
 
 // Calculate value on coins
-const calculateCoinsValue = async (value, moneda) => {
-    const datos = await gettingCoins(moneda);
+const calculateCoinsValue = async (value, coin) => {
+    const datos = await gettingCoins(coin);
     showGraphic(datos, value);
 };
 
@@ -58,7 +58,7 @@ const showGraphic = (datos, value) => {
 
     const datasets = [
         {
-            label: "Moneda",
+            label: "Coin",
             borderColor: "black",
             data: values,
         },
@@ -92,5 +92,6 @@ form.addEventListener("submit", async (event) => {
         alert("Select coin");
         return;
     }
+
     await calculateCoinsTotal(value, coin);
 });
