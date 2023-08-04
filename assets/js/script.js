@@ -3,10 +3,10 @@ const chart = document.querySelector("#myChart");
 let myChart;
 
 // Getting coins
-const gettingCoins = async (coin) => {
+const gettingCoins = async (moneda) => {
     try {
-        const values = await fetch(`https://mindicador.cl/api/${coin}`);
-        const results = await values.json();
+        const valores = await fetch(`https://mindicador.cl/api/${moneda}`);
+        const results = await valores.json();
         return results.serie;
     } catch (error) {
         alert(error.message);
@@ -14,9 +14,9 @@ const gettingCoins = async (coin) => {
 };
 
 // Calculating coins
-const calculateCoinsTotal = (value, datos) => {
-    const coinValue = datos[0].value;
-    const total = value / coinValue;
+const calculateCoinsTotal = (valores, datos) => {
+    const coinValue = datos[0].valor;
+    const total = valores / coinValue;
     return Math.round(total * 100) / 100; //to get integers without decimals
 };
 
@@ -27,7 +27,7 @@ const showResults = (total) => {
 
 // Mapping data
 const obteinValues = (datos) => {
-    return datos.map((item) => item.value);
+    return datos.map((item) => item.valor);
 };
 
 // Obtein dates
@@ -43,14 +43,14 @@ const destroyPreviousGraphic = () => {
 };
 
 // Calculate value on coins
-const calculateCoinsValue = async (value, coin) => {
-    const datos = await gettingCoins(coin);
-    showGraphic(datos, value);
+const calculateCoinsValue = async (valor, moneda) => {
+    const datos = await gettingCoins(moneda);
+    showGraphic(datos, valor);
 };
 
 // Show graphic
-const showGraphic = (datos, value) => {
-    const total = calculateCoinsTotal(value, datos);
+const showGraphic = (datos, valor) => {
+    const total = calculateCoinsTotal(valor, datos);
     showResults(total);
 
     const labels = obteinDates(datos);

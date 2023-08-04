@@ -11,6 +11,12 @@
             rel="shortcut icon"
             href="assets/img/favicon.ico"
             type="image/x-icon" />
+        <!-- font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@100;700&display=swap"
+            rel="stylesheet" />
     </head>
     <body>
         <main>
@@ -18,8 +24,11 @@
             <div class="card">
                 <form id="calculate" class="box">
                     <h2>Chilean Pesos</h2>
-                    <input type="text" name="value" />
-                    <p>Coin to convert</p>
+                    <input
+                        type="text"
+                        name="value"
+                        placeholder="Type numbers" />
+                    <h4>Coin to convert</h4>
                     <select name="coin">
                         <option value="">Choose a change</option>
                         <option value="dolar">Dolar</option>
@@ -32,12 +41,13 @@
                     </article>
                 </form>
             </div>
+
             <section class="graphic">
                 <canvas id="myChart"></canvas>
             </section>
         </main>
         <!-- scripts -->
         <script src="assets/js/script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     </body>
 </html>

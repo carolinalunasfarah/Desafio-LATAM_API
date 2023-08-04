@@ -1,5 +1,7 @@
-/* * {
+* {
     margin: 0;
+    font-family: "Roboto", sans-serif;
+    color: rgb(65, 65, 65);
 }
 
 main {
@@ -7,9 +9,67 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 2rem;
 }
 
-.card{
-    background-color: violet;
-    min-height: 15rem;
-} */
+.card {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(170, 130, 238);
+    min-height: 12rem;
+    min-width: 15rem;
+    border-radius: 5%;
+    text-align: center;
+}
+
+h1 {
+    font-family: "Lobster", cursive;
+}
+
+h1,
+h2,
+option {
+    padding: 1rem;
+}
+
+h1:hover {
+    cursor: default;
+}
+h2:hover {
+    cursor: default;
+}
+h4:hover {
+    cursor: default;
+}
+
+h4 {
+    padding-top: 1.5rem;
+}
+input {
+    height: 1rem;
+    font-size: 16px;
+    width: 10rem;
+}
+
+select,
+button {
+    height: 1.5rem;
+}
+
+select {
+    margin: 0.8rem;
+}
+
+.search {
+    background-color: rgb(104, 104, 104);
+    border: none;
+    border-radius: 10%;
+    color: white;
+    font-weight: bold;
+}
+
+.search:hover {
+    transform: scale(1.1);
+    transition: ease-in-out 0.5s;
+    cursor: pointer;
+}
