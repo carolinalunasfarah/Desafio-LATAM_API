@@ -5,7 +5,7 @@ let myChart;
 // Getting coins
 const gettingCoins = async (codigo) => {
     try {
-        const valores = await fetch("https://mindicador.cl/api/{codigo}");
+        const valores = await fetch(`https://mindicador.cl/api/${codigo}`);
 
         const results = await valores.json();
         return results.serie;
