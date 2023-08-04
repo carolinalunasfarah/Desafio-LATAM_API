@@ -3,9 +3,10 @@ const chart = document.querySelector("#myChart");
 let myChart;
 
 // Getting coins
-const gettingCoins = async (moneda) => {
+const gettingCoins = async (codigo) => {
     try {
-        const valores = await fetch(`https://mindicador.cl/api/${moneda}`);
+        const valores = await fetch("https://mindicador.cl/api/{codigo}");
+
         const results = await valores.json();
         return results.serie;
     } catch (error) {
@@ -93,5 +94,5 @@ form.addEventListener("submit", async (event) => {
         return;
     }
 
-    await calculateCoinsTotal(value, coin);
+    // await calculateCoinsTotal(value, coin);
 });
