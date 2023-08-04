@@ -3,21 +3,94 @@ const chart = document.getElementById("myChart");
 let myChart;
 
 // Getting coins
-const gettingCoins = async (coin) => {
+const gettingCoins = async (moneda) => {
     try {
-        const values = await fetch("https://mindicador.cl/api/${coin}")
+        const values = await fetch("https://mindicador.cl/api/${moneda}");
         const results = await values.json();
         return results.serie;
-    }
-    catch (error) {
+    } catch (error) {
         alert(error.message);
     }
 };
 
 // Calculating coins
-const calculateCoinsTotal = (value, data) => {
-    const coinValue = data [0].value;
+const calculateCoinsTotal = (value, datos) => {
+    const coinValue = datos[0].value;
     const total = value / coinValue;
-    return Math.round (total*100)/100;
+    return Math.round(total * 100) / 100; //to get integers without decimals
 };
 
+// Showing results
+const showResults = (total) => {
+    document.getElementById("total-value").innerHTML = total;
+};
+
+// Mapping data
+const obteinValues = (datos) => {
+    return datos.map((item) => item.value);
+};
+
+// Obtein dates
+const obteinDates = () => {
+    return datos.map((item) => new Date(item.date).toLocalDateString("en-US"));
+};
+
+// Destroy graphic. The idea is to destroy a previous graphic so when we need a new one it doesn't overlap
+const destroyPreviousGraphic = () => {
+    if (myChart) {
+        myChart.destroy();
+    }
+};
+
+// Calculate value on coins
+const calculateCoinsValue = async (value, moneda) => {
+    const datos = await gettingCoins(moneda);
+    showGraphic(datos, value);
+};
+
+// Show graphic
+const showGraphic = (datos, value) => {
+    const total = calculateCoinsTotal(value, datos);
+    showResults(total);
+
+    const labels = obteinDates(datos);
+    const values = obteinValues(datos);
+
+    const datasets = [
+        {
+            label: "Moneda",
+            borderColor: "black",
+            data: values,
+        },
+    ];
+
+    const config = {
+        type: "line",
+        data: { labels, datasets },
+    };
+
+    destroyPreviousGraphic();
+
+    chart.style.backgroundColor = "violet";
+    chart.style.borderRadius = "2rem";
+
+    myChart = new Chart(chart, config);
+};
+
+// Submit event on form
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const value = form.elements["value"].value;
+    const coin = form.elements["coin"].value;
+
+    if (!value) {
+        alert("Type a value");
+        return;
+    }
+    if (!coin) {
+        alert("Select coin");
+        return;
+    }
+    await calculateCoinsTotal(value, coin);
+});
