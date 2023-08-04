@@ -3,23 +3,42 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>API</title>
+        <title>Currency converter</title>
         <!-- css -->
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/style.css" />
+        <!-- favicon -->
+        <link
+            rel="shortcut icon"
+            href="assets/img/favicon.ico"
+            type="image/x-icon" />
     </head>
     <body>
         <main>
-            <h1>Conversor de monedas Nacional</h1>
-            <section class="container">
-                <h2>Pesos CLP</h2>
-                <input type="number" id="conversor">
-                <h3>Moneda a convertir:</h3>
-                <select name="Coin to convert" id="coin"></select>
-                <button id="search">Search</button>
+            <h1>Currency converter</h1>
+            <div class="card">
+                <form id="calculate" class="box">
+                    <h2>Chilean Pesos</h2>
+                    <input type="text" name="value" />
+                    <p>Coin to convert</p>
+                    <select name="coin">
+                        <option value="">Choose a change</option>
+                        <option value="dolar">Dolar</option>
+                        <option value="euro">Euro</option>
+                        <option value="uf">UF</option>
+                    </select>
+                    <button type="submit" class="search">Search</button>
+                    <article class="change">
+                        <h3 id="total-value"></h3>
+                    </article>
+                </form>
+            </div>
+            <section class="graphic">
+                <canvas id="myChart"></canvas>
             </section>
         </main>
         <!-- scripts -->
         <script src="assets/js/script.js"></script>
         <script src="assets/js/mindicador.json"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </body>
 </html>
