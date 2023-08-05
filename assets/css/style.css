@@ -15,8 +15,9 @@ main {
 .card {
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: rgb(170, 130, 238);
-    min-height: 12rem;
+    min-height: 14rem;
     min-width: 15rem;
     border-radius: 5%;
     text-align: center;
@@ -28,7 +29,7 @@ h1 {
 
 h1,
 h2,
-option {
+option, .change {
     padding: 1rem;
 }
 
@@ -48,16 +49,19 @@ h4 {
 input {
     height: 1rem;
     font-size: 16px;
-    width: 10rem;
+    width: 10.8rem;
 }
 
-select,
 button {
     height: 1.5rem;
+    font-size: 16px;
+    min-width: 5rem;
 }
 
 select {
     margin: 0.8rem;
+    height: 1.5rem;
+    min-width: 11rem;
 }
 
 .search {
@@ -69,7 +73,17 @@ select {
 }
 
 .search:hover {
-    transform: scale(1.1);
-    transition: ease-in-out 0.5s;
+    transform: scale(1.25);
+    transition: ease-in-out 1s;
+    cursor: pointer;
+}
+
+#refresh {
+    margin-left: 1rem;
+}
+
+#refresh:hover {
+    transform: scale(1.5);
+    transition: ease-in-out 1s;
     cursor: pointer;
 }

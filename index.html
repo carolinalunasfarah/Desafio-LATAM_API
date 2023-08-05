@@ -17,10 +17,14 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@100;700&display=swap"
             rel="stylesheet" />
+        <!-- fontawesome -->
+        <script
+            src="https://kit.fontawesome.com/f4fd55b42a.js"
+            crossorigin="anonymous"></script>
     </head>
     <body>
         <main>
-            <h1>Currency converter</h1>
+            <h1>💸 Currency converter 💸</h1>
             <div class="card">
                 <form id="calculate" class="box">
                     <h2>Chilean Pesos</h2>
@@ -35,15 +39,19 @@
                         <option value="euro">Euro</option>
                         <option value="uf">UF</option>
                     </select>
-                    <button type="submit" class="search">Search</button>
-                    <article class="change">
-                        <h3 id="totalValue"></h3>
-                    </article>
+                    <div class="container">
+                        <button type="submit" class="search">Search</button>
+                        <i class="fa-solid fa-arrows-rotate" id="refresh"></i>
+                        <article class="change">
+                            <h3 id="totalValue"></h3>
+                        </article>
+                    </div>
                 </form>
             </div>
 
             <section class="graphic">
                 <canvas id="myChart"></canvas>
+                <div id="refresh"></div>
             </section>
         </main>
         <!-- scripts -->

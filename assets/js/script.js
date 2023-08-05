@@ -1,12 +1,12 @@
 const form = document.querySelector("#calculate");
 const chart = document.querySelector("#myChart");
+const refreshIcon = document.querySelector("#refresh");
 let myChart;
 
 // Getting coins
 const gettingCoins = async (codigo) => {
     try {
         const valores = await fetch(`https://mindicador.cl/api/${codigo}`);
-
         const results = await valores.json();
         return results.serie;
     } catch (error) {
@@ -33,7 +33,9 @@ const obteinValues = (datos) => {
 
 // Obtein dates
 const obteinDates = (datos) => {
-    return datos.map((item) => new Date(item.date).toLocaleDateString("en-US"));
+    return datos.slice(0, 10).map(
+        (item) => new Date(item.fecha).toLocaleDateString("en-US") //fecha because the API's spanish, slice -10 to get last 10 dates
+    );
 };
 
 // Destroy graphic. The idea is to destroy a previous graphic so when we need a new one it doesn't overlap
@@ -60,7 +62,8 @@ const showGraphic = (datos, valor) => {
     const datasets = [
         {
             label: "Coin",
-            borderColor: "black",
+            borderColor: "rgb(170, 130, 238)",
+            borderWidth: 2,
             data: values,
         },
     ];
@@ -72,8 +75,10 @@ const showGraphic = (datos, valor) => {
 
     destroyPreviousGraphic();
 
-    chart.style.backgroundColor = "violet";
+    chart.style.backgroundColor = "rgba(238, 130, 238, 0.3)";
     chart.style.borderRadius = "2rem";
+    chart.style.padding = "2rem";
+    chart.style.margin = "2rem";
 
     myChart = new Chart(chart, config);
 };
@@ -94,5 +99,12 @@ form.addEventListener("submit", async (event) => {
         return;
     }
 
-    // await calculateCoinsTotal(value, coin);
+    await calculateCoinsValue(value, coin);
 });
+
+// Refreshing website
+const refresh = () => {
+    location.reload(true);
+};
+
+refreshIcon.addEventListener("click", refresh);
